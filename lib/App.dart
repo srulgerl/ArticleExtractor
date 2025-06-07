@@ -2,14 +2,14 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class ArticleExtractorWithRetry {
-  static const String baseUrl =
-      'https://article-extractor-and-summarizer.p.rapidapi.com';
-  static const String apiKey =
-      '4e34b37fe2mshd5d8f4c67dfb593p1ce02fjsne0ac2b8c4726';
+  static String get baseUrl => dotenv.env['BASE_URL'] ?? '';
+  static String get apiKey => dotenv.env['RAPIDAPI_KEY'] ?? '';
+  static String get apiHost => dotenv.env['RAPIDAPI_HOST'] ?? '';
 
   // Retry логик нэмсэн функц
   static Future<Map<String, dynamic>> extractWithRetry({
